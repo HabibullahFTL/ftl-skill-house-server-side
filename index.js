@@ -62,6 +62,28 @@ client.connect(err => {
             res.send(documents[0])
         })
       })
+
+      // ============ [ For Orders filtering user id ]==============
+      app.post('/orders',(req,res)=>{
+        const {uid} = req.query;
+        orderCollection.find({uid:uid})
+        .sort({_id:-1})
+        .toArray((err,documents)=>{
+            res.send(documents)
+        })
+      })
+
+      // ============ [ For deleting course by course id ]==============
+      app.post('/delete-course',(req,res)=>{
+        const {course_id} = req.query;
+        courseCollection.deleteOne({_id:ObjectID(course_id)})
+        .then(result=>{
+            res.send(result.deletedCount > 0)
+        })
+        .catch(err=>{
+            res.send(false)
+        })
+      })
   }
 });
 
