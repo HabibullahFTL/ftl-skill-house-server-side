@@ -1,12 +1,13 @@
-// const port = 3001;
+const port = 3001;
 
 const express = require('express');
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+require('dotenv').config();
 
 const app = express();
-const uri = `mongodb+srv://piash1:piash365@cluster0.ummk1.mongodb.net/ftl_skill_house?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ummk1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(express.json())
@@ -89,5 +90,4 @@ client.connect(err => {
   }
 });
 
-
-app.listen(3500);
+app.listen(process.env.port || port);
