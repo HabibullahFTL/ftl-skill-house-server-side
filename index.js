@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(cors());
 
 app.get("/",(req,res)=>{
-    res.send("Hello")
+    res.send("Welcome to FTL Skill House API")
 })
 
 
@@ -48,7 +48,7 @@ client.connect(err => {
     })
 
       // ============ [ For Showing All course ]==============
-      app.post('/all-courses',(req,res)=>{
+      app.get('/all-courses',(req,res)=>{
         courseCollection.find({})
         .sort({_id:-1})
         .toArray((err,documents)=>{
