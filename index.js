@@ -57,7 +57,7 @@ client.connect(err => {
       })
 
       // ============ [ For Showing Single course ]==============
-      app.post('/course',(req,res)=>{
+      app.get('/course',(req,res)=>{
         const {course_id} = req.query;
         courseCollection.find({_id:ObjectID(course_id)})
         .sort({_id:-1})
@@ -67,7 +67,7 @@ client.connect(err => {
       })
 
       // ============ [ For Orders filtering user id ]==============
-      app.post('/orders',(req,res)=>{
+      app.get('/orders',(req,res)=>{
         const {uid} = req.query;
         orderCollection.find({uid:uid})
         .sort({_id:-1})
